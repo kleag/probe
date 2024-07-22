@@ -19,17 +19,17 @@
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  * 
  *********************************************************************/
-
 %{
 #include "ff.h"
 #include "parse.h"
-  
+#include "scan-fct_pddl.tab.h"
+
   /* default yywrap function - always treat EOF as an EOF  */
 int fct_pddlwrap() {
 return 1;
 }
 
-int gbracket_count = 0;
+extern int gbracket_count;
 
 %}
 
@@ -129,12 +129,12 @@ z [Zz]
 "/"  {  return(DI_TOK); }
 
 :?[a-zA-Z][a-zA-Z0-9\-_]* { strupcase( yytext );  
-  strcpy(yylval.string, yytext ); return(NAME); }
+  strcpy(fct_pddllval.string, yytext ); return(NAME); }
 
 \?[a-zA-Z][a-zA-Z0-9\-_\[\]]* {strupcase( yytext );
- strcpy(yylval.string, yytext); return(VARIABLE); }
+ strcpy(fct_pddllval.string, yytext); return(VARIABLE); }
 
-"-"?[0-9]*[.]?[0-9]* { strcpy(yylval.string, yytext); return(NUM);}
+"-"?[0-9]*[.]?[0-9]* { strcpy(fct_pddllval.string, yytext); return(NUM);}
 
 "-"[ \t]*"("[ \t]*{e}{i}{t}{h}{e}{r} { return(EITHER_TOK); }
 

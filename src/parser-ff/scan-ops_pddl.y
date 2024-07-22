@@ -991,7 +991,7 @@ VARIABLE  typed_list_variable        /* a list element (gets type from next one)
 
 
 %%
-#include "lex.ops_pddl.c"
+#include "lex-ops_pddl.h"
 
 
 /**********************************************************************

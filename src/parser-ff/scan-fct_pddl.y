@@ -873,7 +873,7 @@ NAME  name_star
 %%
 
 
-#include "lex.fct_pddl.c"
+#include "lex-fct_pddl.h"
 
 
 /**********************************************************************
