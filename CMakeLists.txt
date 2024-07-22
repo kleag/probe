@@ -51,3 +51,13 @@ target_link_libraries(probe ff pddl opspddl)
 
 # Optional: Set the static linking flag (if required)
 set_target_properties(probe PROPERTIES LINK_FLAGS "-static")
+
+# Detect the virtual environment's bin directory
+if(DEFINED ENV{VIRTUAL_ENV})
+    set(VIRTUAL_ENV_BIN $ENV{VIRTUAL_ENV}/bin)
+else()
+    message(FATAL_ERROR "No virtual environment detected. Please activate your virtual environment.")
+endif()
+
+# Specify the installation directory for the target
+install(TARGETS probe DESTINATION ${VIRTUAL_ENV_BIN})
